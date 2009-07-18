@@ -27,6 +27,10 @@ class Api(object):
 		'''
 		self.apikey = apikey
 		self.providerkey = providerkey
+		
+		
+	# Aliasing
+		self.add = self.post
 
 	def get_apikey(self):
 		'''Get the api key for the prowler instance.
@@ -83,6 +87,32 @@ class Api(object):
 			raise Exception("Invalid API Key %s" % verify_content)
 		else:
 			return True
+			
+	def post(self,
+			 notification):
+        # Create the http object
+		h = httplib2.Http()
+
+        # Set User-Agent
+		headers = {'User-Agent': "Prowlpy/%s" % str(__version__)}
+
+        # Perform the request and get the response headers and content
+		data = {
+			'apikey': self.apikey,
+			'application': notification.application,
+			'event': notification.event,
+			'description': notification.description,
+			'priority': notification.priority
+		}
+		headers["Content-type"] = 'application/x-www-form-urlencoded'
+		resp,content = h.request("%s/add/" % API_DOMAIN, "POST", headers=headers, body=urllib.urlencode(data))
+
+		if resp['status'] == '200':
+			return True
+		elif resp['status'] == '401':
+			raise Exception("Auth Failed: %s" % content)
+		else:
+			raise Exception('Failed')
 
 class Notification(object):
 	def __init__(self,
@@ -102,9 +132,6 @@ class Notification(object):
 		self.application = application
 		self.event = event
 		self.description = description
-		
-		# Aliasing
-		self.add = self.post
 		
 		def get_priority(self):
 			'''Get the priority for the notification.
@@ -190,29 +217,4 @@ class Notification(object):
 		description = property(get_description, set_description,
 								doc='The description for the notification')
 
-	def post(self,
-			 apikey=None,
-			 providerkey=None):
-        # Create the http object
-		h = httplib2.Http()
 
-        # Set User-Agent
-		headers = {'User-Agent': "Prowlpy/%s" % str(__version__)}
-
-        # Perform the request and get the response headers and content
-		data = {
-			'apikey': apikey,
-			'application': self.application,
-			'event': self.event,
-			'description': self.description,
-			'priority': self.priority
-		}
-		headers["Content-type"] = 'application/x-www-form-urlencoded'
-		resp,content = h.request("%s/add/" % API_DOMAIN, "POST", headers=headers, body=urllib.urlencode(data))
-
-		if resp['status'] == '200':
-			return True
-		elif resp['status'] == '401':
-			raise Exception("Auth Failed: %s" % content)
-		else:
-			raise Exception('Failed')
