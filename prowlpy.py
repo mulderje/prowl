@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-Prowlpy v0.5.1
+Prowlpy v0.5.2
 
 Written by Jacob Burch, 7/6/2009
 		   Jonathan Mulder, 7/18/2009
@@ -8,7 +8,7 @@ Written by Jacob Burch, 7/6/2009
 Python module for posting to the iPhone Push Notification service Prowl: http://prowl.weks.net/
 '''
 __author__ = 'jacobburch@gmail.com, mulderje@muohio.edu'
-__version__ = 0.5.1
+__version__ = 0.52
 
 import httplib2
 import urllib
@@ -16,6 +16,25 @@ import urllib
 API_DOMAIN = 'https://prowl.weks.net/publicapi'
 
 class Api(object):
+	'''A python interface to the prowler api
+	
+	Example usage:
+		To create an instance of the prowlpy.Api class:
+		
+			>>> import prowlpy
+			>>> api = prowlpy.Api('1234567890123456789012345678901234567890')
+		
+		To verity the validity of an api key:
+			
+			>>> api.verify()
+			
+		To post a notification:
+		
+			Create a notification object (n)
+			>>> api.post(n)
+			
+		Both the verify and the post methods will return success or failure values.
+	'''
 	def __init__(self,
 				 apikey=None,
 				 providerkey=None):
@@ -76,7 +95,14 @@ class Api(object):
 	def verify(self):
 		'''Verify an API key is valid.
 		
-		Need to add support for providerkey still...
+		TODO:
+			Add support for providerkey still...
+			Add more robust error checking
+		
+		Returns:
+			True: Returns true if the response is 200
+		Exception:
+			If anything fails
 		'''
 		h = httplib2.Http()
 		headers = {'User-Agent': "Prowlpy/%s" % str(__version__)}
@@ -89,6 +115,20 @@ class Api(object):
 			
 	def post(self,
 			 notification):
+		'''Post a notification using the given api key.
+		
+		TODO:
+			Create more robust error checking
+		
+		Args:
+			notification: A notification object
+			
+		Returns:
+			True: Returns true if the response is 200
+		Exception:
+			401: if authentification fails
+			Else: if anything else happens
+		'''
         # Create the http object
 		h = httplib2.Http()
 
@@ -114,6 +154,14 @@ class Api(object):
 			raise Exception('Failed')
 
 class Notification(object):
+	'''A python interface for a growl notification to be sent through the prowler api
+	
+	Example usage:
+		To send a notification:
+			>>> import prowlpy
+			>>> n = prowlpy.Notification('TestApp', 'Server Down', "The Web Box isn't responding to a ping")
+			>>> api.post(n)	
+	'''
 	def __init__(self,
 				 application=None,
 				 event=None,
@@ -215,5 +263,3 @@ class Notification(object):
 
 		description = property(get_description, set_description,
 								doc='The description for the notification')
-
-
