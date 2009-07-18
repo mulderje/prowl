@@ -1,5 +1,6 @@
 Prowlpy
 Written by Jacob Burch, 7/6/2009
+		   Jonathan Mulder, 7/18/2009
 
 Python module for posting to the iPhone Push Notification service Prowl: http://prowl.weks.net/
 
@@ -10,7 +11,10 @@ The socket module must be compiled with SSL support
 ------
 Change Log
 ------
-V0.5
+v0.5.1
+Put the post back into the Api class
+
+v0.5
 Changed the way the api is accesd, and changed the example a bit.
 Added a bit of documentation, need to do more...
 	    
@@ -29,7 +33,7 @@ Changed to handle the new API system.
 V0.2
 Basic working module
 
-
+------
 Todo:
     Add priority
 	More detailed Exceptions based on the returned XML document

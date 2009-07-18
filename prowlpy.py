@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-Prowlpy V0.5
+Prowlpy v0.5.1
 
 Written by Jacob Burch, 7/6/2009
 		   Jonathan Mulder, 7/18/2009
@@ -8,7 +8,7 @@ Written by Jacob Burch, 7/6/2009
 Python module for posting to the iPhone Push Notification service Prowl: http://prowl.weks.net/
 '''
 __author__ = 'jacobburch@gmail.com, mulderje@muohio.edu'
-__version__ = 0.5
+__version__ = 0.5.1
 
 import httplib2
 import urllib
@@ -28,8 +28,7 @@ class Api(object):
 		self.apikey = apikey
 		self.providerkey = providerkey
 		
-		
-	# Aliasing
+		# Aliasing
 		self.add = self.post
 
 	def get_apikey(self):
