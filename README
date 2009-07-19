@@ -11,6 +11,9 @@ The socket module must be compiled with SSL support
 ------
 Change Log
 ------
+v0.5.4
+Fixed a typo where application and event would be the same thing
+
 v0.5.3
 Fixed indentation errors
 

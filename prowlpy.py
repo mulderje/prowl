@@ -21,7 +21,7 @@
 # THE SOFTWARE.
 
 '''
-Prowlpy v0.5.3
+Prowlpy v0.5.4
 
 Written by Jacob Burch, 7/6/2009
 		   Jonathan Mulder, 7/18/2009
@@ -29,7 +29,7 @@ Written by Jacob Burch, 7/6/2009
 Python module for posting to the iPhone Push Notification service Prowl Api: http://prowl.weks.net/
 '''
 __author__ = 'jacobburch@gmail.com, mulderje@muohio.edu'
-__version__ = '0.5.3'
+__version__ = '0.5.4'
 
 import httplib2
 import urllib
@@ -51,7 +51,7 @@ class Api(object):
 			
 		To post a notification:
 		
-			Create a notification object (n)
+			Create a Notification object (n)
 			>>> api.post(n)
 			
 		Both the verify and the post methods will return success or failure values.
@@ -142,7 +142,7 @@ class Api(object):
 			Create more robust error checking
 		
 		Args:
-			notification: A notification object
+			notification: A Notification object
 			
 		Returns:
 			True: Returns true if the response is 200
@@ -180,7 +180,7 @@ class Notification(object):
 	Example usage:
 		To send a notification:
 		
-			Create an api instance (api)
+			Create an Api instance (api)
 			>>> import prowlpy
 			>>> n = prowlpy.Notification('TestApp', 'Server Down', "The Web Box isn't responding to a ping")
 			>>> api.post(n)	
@@ -193,57 +193,36 @@ class Notification(object):
 		'''An object to hold a Prowler notification.
 		
 		Args:
-		   priority: An integer value ranging [-2, 2]: Very Low, Moderate, Normal, High, Emergency.
 		   application: The name of your application or the application generating the event.
 		   event: The name of the event or subject of the event.
 		   description: A description of the event, generally terse.
+		   priority: An integer value ranging [-2, 2]: Very Low, Moderate, Normal, High, Emergency.
 		'''
-		self.priority = priority
 		self.application = application
 		self.event = event
 		self.description = description
+		self.priority = priority
 		
-	def get_priority(self):
-		'''Get the priority for the notification.
-		
-		Returns:
-			The priority for the notification
-		'''
-		return self._priority
-		
-	def set_priority(self, priority):
-		'''Sets the priority for the notification.
-		
-		Args:
-			priority: The priority for the notification
-		'''
-		if not (priority >= -2 or priority <= 2):
-			raise ValueError('priority must be in the range [-2, 2]')
-		self._priority = priority
-		
-	priority = property(get_priority, set_priority,
-						doc='The priority for the notification')
-						
-	def get_event(self):
-		'''Get the event for the notification
+	def get_application(self):
+		'''Get the application for the notification
 		
 		Returns:
-			The event for the notification
+			The application for the notification
 		'''
-		return self._event
+		return self._application
 		
-	def set_event(self, event):
-		'''Sets the event for the notification
+	def set_application(self, application):
+		'''Sets the application for the notification
 		
 		Args:
-			event: The event for the notification
+			event: The application for the notification
 		'''
-		if not len(event) <= 1024:
-			raise ValueError('events length must be <= 1024')
-		self._event = unicode(event)
+		if not len(application) <= 256:
+			raise ValueError('applications length must be <= 256')
+		self._application = unicode(application)
 		
-	event = property(get_event, set_event,
-							doc='The event for the notification')
+	application = property(get_application, set_application,
+							doc='The application for the notification')
 							
 	def get_event(self):
 		'''Get the event for the notification
@@ -286,3 +265,25 @@ class Notification(object):
 
 	description = property(get_description, set_description,
 							doc='The description for the notification')
+
+	def get_priority(self):
+		'''Get the priority for the notification.
+
+		Returns:
+			The priority for the notification
+		'''
+		return self._priority
+
+	def set_priority(self, priority):
+		'''Sets the priority for the notification.
+
+		Args:
+			priority: The priority for the notification
+		'''
+		if not (priority >= -2 or priority <= 2):
+			raise ValueError('priority must be in the range [-2, 2]')
+		self._priority = priority
+
+	priority = property(get_priority, set_priority,
+						doc='The priority for the notification')
+	
