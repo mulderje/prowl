@@ -21,7 +21,7 @@
 # THE SOFTWARE.
 
 '''
-Prowlpy v0.5.2
+Prowlpy v0.5.3
 
 Written by Jacob Burch, 7/6/2009
 		   Jonathan Mulder, 7/18/2009
@@ -29,7 +29,7 @@ Written by Jacob Burch, 7/6/2009
 Python module for posting to the iPhone Push Notification service Prowl Api: http://prowl.weks.net/
 '''
 __author__ = 'jacobburch@gmail.com, mulderje@muohio.edu'
-__version__ = '0.5.2'
+__version__ = '0.5.3'
 
 import httplib2
 import urllib
@@ -203,86 +203,86 @@ class Notification(object):
 		self.event = event
 		self.description = description
 		
-		def get_priority(self):
-			'''Get the priority for the notification.
-			
-			Returns:
-				The priority for the notification
-			'''
-			return self._priority
-			
-		def set_priority(self, priority):
-			'''Sets the priority for the notification.
-			
-			Args:
-				priority: The priority for the notification
-			'''
-			if not (priority >= -2 or priority <= 2):
-				raise ValueError('priority must be in the range [-2, 2]')
-			self._priority = prioriy
-			
-		priority = property(get_priority, set_priority,
-							doc='The priority for the notification')
+	def get_priority(self):
+		'''Get the priority for the notification.
+		
+		Returns:
+			The priority for the notification
+		'''
+		return self._priority
+		
+	def set_priority(self, priority):
+		'''Sets the priority for the notification.
+		
+		Args:
+			priority: The priority for the notification
+		'''
+		if not (priority >= -2 or priority <= 2):
+			raise ValueError('priority must be in the range [-2, 2]')
+		self._priority = priority
+		
+	priority = property(get_priority, set_priority,
+						doc='The priority for the notification')
+						
+	def get_event(self):
+		'''Get the event for the notification
+		
+		Returns:
+			The event for the notification
+		'''
+		return self._event
+		
+	def set_event(self, event):
+		'''Sets the event for the notification
+		
+		Args:
+			event: The event for the notification
+		'''
+		if not len(event) <= 1024:
+			raise ValueError('events length must be <= 1024')
+		self._event = unicode(event)
+		
+	event = property(get_event, set_event,
+							doc='The event for the notification')
 							
-		def get_event(self):
-			'''Get the event for the notification
-			
-			Returns:
-				The event for the notification
-			'''
-			return self._event
-			
-		def set_event(self, event):
-			'''Sets the event for the notification
-			
-			Args:
-				event: The event for the notification
-			'''
-			if not len(event) <= 1024:
-				raise ValueError('events length must be <= 1024')
-			self._event = unicode(event)
-			
-		event = property(get_event, set_event,
-								doc='The event for the notification')
-								
-		def get_event(self):
-			'''Get the event for the notification
+	def get_event(self):
+		'''Get the event for the notification
 
-			Returns:
-				The event for the notification
-			'''
-			return self._event
+		Returns:
+			The event for the notification
+		'''
+		return self._event
 
-		def set_event(self, event):
-			'''Sets the event for the notification
+	def set_event(self, event):
+		'''Sets the event for the notification
 
-			Args:
-				event: The event for the notification
-			'''
-			if not len(event) <= 1024:
-				raise ValueError('events length must be <= 1024')
-			self._event = unicode(event)
+		Args:
+			event: The event for the notification
+		'''
+		if not len(event) <= 1024:
+			raise ValueError('events length must be <= 1024')
+		self._event = unicode(event)
 
-		event = property(get_event, set_event,
-								doc='The event for the notification')
-								
-		def get_description(self):
-			'''Get the description for the notification
+	event = property(get_event, set_event,
+							doc='The event for the notification')
+							
+	def get_description(self):
+		'''Get the description for the notification
 
-			Returns:
-				The description for the notification
-			'''
-			return self._description
+		Returns:
+			The description for the notification
+		'''
+		return self._description
 
-		def set_description(self, description):
-			'''Sets the description for the notification
+	def set_description(self, description):
+		'''Sets the description for the notification
 
-			Args:
-				description: The description for the notification
-			'''
-			if not len(description) <= 10000:
-				raise ValueError('description length must be <= 10000')
-			self._description = unicode(description)
+		Args:
+			description: The description for the notification
+		'''
+		if not len(description) <= 10000:
+			raise ValueError('description length must be <= 10000')
+		self._description = unicode(description)
 
-		description = property(get_description, set_description,
-								doc='The description for the notification')
+	description = property(get_description, set_description,
+							doc='The description for the notification')
