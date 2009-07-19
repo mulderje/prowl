@@ -1,0 +1,225 @@
+
+<!doctype html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module prowlpy</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>prowlpy</strong></big></big> (version 0.5.2)</font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/jonmulder/src/prowlpy/prowlpy.py">/Users/jonmulder/src/prowlpy/prowlpy.py</a></font></td></tr></table>
+    <p><tt>Prowlpy&nbsp;v0.5.2<br>
+&nbsp;<br>
+Written&nbsp;by&nbsp;Jacob&nbsp;Burch,&nbsp;7/6/2009<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jonathan&nbsp;Mulder,&nbsp;7/18/2009<br>
+&nbsp;<br>
+Python&nbsp;module&nbsp;for&nbsp;posting&nbsp;to&nbsp;the&nbsp;iPhone&nbsp;Push&nbsp;<a href="#Notification">Notification</a>&nbsp;service&nbsp;Prowl&nbsp;<a href="#Api">Api</a>:&nbsp;<a href="http://prowl.weks.net/">http://prowl.weks.net/</a></tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="httplib2.html">httplib2</a><br>
+</td><td width="25%" valign=top><a href="urllib.html">urllib</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="prowlpy.html#Api">Api</a>
+</font></dt><dt><font face="helvetica, arial"><a href="prowlpy.html#Notification">Notification</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Api">class <strong>Api</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;python&nbsp;interface&nbsp;to&nbsp;the&nbsp;prowler&nbsp;api<br>
+&nbsp;<br>
+Example&nbsp;usage:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;create&nbsp;an&nbsp;instance&nbsp;of&nbsp;the&nbsp;prowlpy.<a href="#Api">Api</a>&nbsp;class:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;import&nbsp;prowlpy<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;api&nbsp;=&nbsp;prowlpy.<a href="#Api">Api</a>('1234567890123456789012345678901234567890')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;verity&nbsp;the&nbsp;validity&nbsp;of&nbsp;an&nbsp;api&nbsp;key:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;api.<a href="#Api-verify">verify</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;post&nbsp;a&nbsp;notification:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create&nbsp;a&nbsp;notification&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(n)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;api.<a href="#Api-post">post</a>(n)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Both&nbsp;the&nbsp;verify&nbsp;and&nbsp;the&nbsp;post&nbsp;methods&nbsp;will&nbsp;return&nbsp;success&nbsp;or&nbsp;failure&nbsp;values.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Api-__init__"><strong>__init__</strong></a>(self, apikey<font color="#909090">=None</font>, providerkey<font color="#909090">=None</font>)</dt><dd><tt>An&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;to&nbsp;hold&nbsp;a&nbsp;Prowler&nbsp;api&nbsp;instance<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;apikey:&nbsp;The&nbsp;user's&nbsp;API&nbsp;key.&nbsp;A&nbsp;40-byte&nbsp;hexadecimal&nbsp;string.<br>
+&nbsp;&nbsp;&nbsp;providerkey:&nbsp;Your&nbsp;provider&nbsp;API&nbsp;key.&nbsp;Only&nbsp;necessary&nbsp;if&nbsp;you&nbsp;have&nbsp;been&nbsp;whitelisted.</tt></dd></dl>
+
+<dl><dt><a name="Api-get_apikey"><strong>get_apikey</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;api&nbsp;key&nbsp;for&nbsp;the&nbsp;prowler&nbsp;instance.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;apikey&nbsp;for&nbsp;the&nbsp;prowler&nbsp;instance</tt></dd></dl>
+
+<dl><dt><a name="Api-get_providerkey"><strong>get_providerkey</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;provider&nbsp;key&nbsp;for&nbsp;the&nbsp;prowler&nbsp;instance.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;providerkey&nbsp;for&nbsp;the&nbsp;prowler&nbsp;instance</tt></dd></dl>
+
+<dl><dt><a name="Api-post"><strong>post</strong></a>(self, notification)</dt><dd><tt>Post&nbsp;a&nbsp;notification&nbsp;using&nbsp;the&nbsp;given&nbsp;api&nbsp;key.<br>
+&nbsp;<br>
+TODO:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create&nbsp;more&nbsp;robust&nbsp;error&nbsp;checking<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notification:&nbsp;A&nbsp;notification&nbsp;<a href="__builtin__.html#object">object</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True:&nbsp;Returns&nbsp;true&nbsp;if&nbsp;the&nbsp;response&nbsp;is&nbsp;200<br>
+Exception:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;401:&nbsp;if&nbsp;authentification&nbsp;fails<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Else:&nbsp;if&nbsp;anything&nbsp;else&nbsp;happens</tt></dd></dl>
+
+<dl><dt><a name="Api-set_apikey"><strong>set_apikey</strong></a>(self, apikey)</dt><dd><tt>Set&nbsp;the&nbsp;api&nbsp;key&nbsp;for&nbsp;the&nbsp;prowler&nbsp;instance.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;apikey:&nbsp;The&nbsp;apikey&nbsp;for&nbsp;the&nbsp;prowler&nbsp;instance</tt></dd></dl>
+
+<dl><dt><a name="Api-set_providerkey"><strong>set_providerkey</strong></a>(self, providerkey)</dt><dd><tt>Set&nbsp;the&nbsp;provider&nbsp;key&nbsp;for&nbsp;the&nbsp;prowler&nbsp;instance.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;apikey:&nbsp;The&nbsp;apikey&nbsp;for&nbsp;the&nbsp;prowler&nbsp;instance</tt></dd></dl>
+
+<dl><dt><a name="Api-verify"><strong>verify</strong></a>(self)</dt><dd><tt>Verify&nbsp;an&nbsp;API&nbsp;key&nbsp;is&nbsp;valid.<br>
+&nbsp;<br>
+TODO:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add&nbsp;support&nbsp;for&nbsp;providerkey&nbsp;still...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add&nbsp;more&nbsp;robust&nbsp;error&nbsp;checking<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True:&nbsp;Returns&nbsp;true&nbsp;if&nbsp;the&nbsp;response&nbsp;is&nbsp;200<br>
+Exception:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;anything&nbsp;fails</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>apikey</strong></dt>
+<dd><tt>The&nbsp;api&nbsp;key&nbsp;for&nbsp;the&nbsp;prowler&nbsp;instance.</tt></dd>
+</dl>
+<dl><dt><strong>providerkey</strong></dt>
+<dd><tt>The&nbsp;provider&nbsp;key&nbsp;for&nbsp;the&nbsp;prowler&nbsp;instance.</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Notification">class <strong>Notification</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;python&nbsp;interface&nbsp;for&nbsp;a&nbsp;growl&nbsp;notification&nbsp;to&nbsp;be&nbsp;sent&nbsp;through&nbsp;the&nbsp;prowler&nbsp;api<br>
+&nbsp;<br>
+Example&nbsp;usage:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;send&nbsp;a&nbsp;notification:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create&nbsp;an&nbsp;api&nbsp;instance&nbsp;(api)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;import&nbsp;prowlpy<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;n&nbsp;=&nbsp;prowlpy.<a href="#Notification">Notification</a>('TestApp',&nbsp;'Server&nbsp;Down',&nbsp;"The&nbsp;Web&nbsp;Box&nbsp;isn't&nbsp;responding&nbsp;to&nbsp;a&nbsp;ping")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;api.post(n)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Notification-__init__"><strong>__init__</strong></a>(self, application<font color="#909090">=None</font>, event<font color="#909090">=None</font>, description<font color="#909090">=None</font>, priority<font color="#909090">=0</font>)</dt><dd><tt>An&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;to&nbsp;hold&nbsp;a&nbsp;Prowler&nbsp;notification.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;priority:&nbsp;An&nbsp;integer&nbsp;value&nbsp;ranging&nbsp;[-2,&nbsp;2]:&nbsp;Very&nbsp;Low,&nbsp;Moderate,&nbsp;Normal,&nbsp;High,&nbsp;Emergency.<br>
+&nbsp;&nbsp;&nbsp;application:&nbsp;The&nbsp;name&nbsp;of&nbsp;your&nbsp;application&nbsp;or&nbsp;the&nbsp;application&nbsp;generating&nbsp;the&nbsp;event.<br>
+&nbsp;&nbsp;&nbsp;event:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;event&nbsp;or&nbsp;subject&nbsp;of&nbsp;the&nbsp;event.<br>
+&nbsp;&nbsp;&nbsp;description:&nbsp;A&nbsp;description&nbsp;of&nbsp;the&nbsp;event,&nbsp;generally&nbsp;terse.</tt></dd></dl>
+
+<dl><dt><a name="Notification-get_description"><strong>get_description</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;description&nbsp;for&nbsp;the&nbsp;notification<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;description&nbsp;for&nbsp;the&nbsp;notification</tt></dd></dl>
+
+<dl><dt><a name="Notification-get_event"><strong>get_event</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;event&nbsp;for&nbsp;the&nbsp;notification<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;event&nbsp;for&nbsp;the&nbsp;notification</tt></dd></dl>
+
+<dl><dt><a name="Notification-get_priority"><strong>get_priority</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;priority&nbsp;for&nbsp;the&nbsp;notification.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;priority&nbsp;for&nbsp;the&nbsp;notification</tt></dd></dl>
+
+<dl><dt><a name="Notification-set_description"><strong>set_description</strong></a>(self, description)</dt><dd><tt>Sets&nbsp;the&nbsp;description&nbsp;for&nbsp;the&nbsp;notification<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;The&nbsp;description&nbsp;for&nbsp;the&nbsp;notification</tt></dd></dl>
+
+<dl><dt><a name="Notification-set_event"><strong>set_event</strong></a>(self, event)</dt><dd><tt>Sets&nbsp;the&nbsp;event&nbsp;for&nbsp;the&nbsp;notification<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event:&nbsp;The&nbsp;event&nbsp;for&nbsp;the&nbsp;notification</tt></dd></dl>
+
+<dl><dt><a name="Notification-set_priority"><strong>set_priority</strong></a>(self, priority)</dt><dd><tt>Sets&nbsp;the&nbsp;priority&nbsp;for&nbsp;the&nbsp;notification.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;priority:&nbsp;The&nbsp;priority&nbsp;for&nbsp;the&nbsp;notification</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>description</strong></dt>
+<dd><tt>The&nbsp;description&nbsp;for&nbsp;the&nbsp;notification</tt></dd>
+</dl>
+<dl><dt><strong>event</strong></dt>
+<dd><tt>The&nbsp;event&nbsp;for&nbsp;the&nbsp;notification</tt></dd>
+</dl>
+<dl><dt><strong>priority</strong></dt>
+<dd><tt>The&nbsp;priority&nbsp;for&nbsp;the&nbsp;notification</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>API_DOMAIN</strong> = 'https://prowl.weks.net/publicapi'<br>
+<strong>__author__</strong> = 'jacobburch@gmail.com, mulderje@muohio.edu'<br>
+<strong>__version__</strong> = '0.5.2'</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#7799ee">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Author</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#7799ee"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">jacobburch@gmail.com,&nbsp;mulderje@muohio.edu</td></tr></table>
+</body></html>
