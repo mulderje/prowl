@@ -6,7 +6,7 @@
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
 <tr bgcolor="#7799ee">
 <td valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>prowlpy</strong></big></big> (version 0.52)</font></td
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>prowlpy</strong></big></big> (version 0.5.2)</font></td
 ><td align=right valign=bottom
 ><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/jonmulder/src/prowlpy/prowlpy.py">/Users/jonmulder/src/prowlpy/prowlpy.py</a></font></td></tr></table>
     <p><tt>Prowlpy&nbsp;v0.5.2<br>
@@ -14,7 +14,7 @@
 Written&nbsp;by&nbsp;Jacob&nbsp;Burch,&nbsp;7/6/2009<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jonathan&nbsp;Mulder,&nbsp;7/18/2009<br>
 &nbsp;<br>
-Python&nbsp;module&nbsp;for&nbsp;posting&nbsp;to&nbsp;the&nbsp;iPhone&nbsp;Push&nbsp;<a href="#Notification">Notification</a>&nbsp;service&nbsp;Prowl:&nbsp;<a href="http://prowl.weks.net/">http://prowl.weks.net/</a></tt></p>
+Python&nbsp;module&nbsp;for&nbsp;posting&nbsp;to&nbsp;the&nbsp;iPhone&nbsp;Push&nbsp;<a href="#Notification">Notification</a>&nbsp;service&nbsp;Prowl&nbsp;<a href="#Api">Api</a>:&nbsp;<a href="http://prowl.weks.net/">http://prowl.weks.net/</a></tt></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#aa55cc">
@@ -143,6 +143,8 @@ Data descriptors defined here:<br>
 &nbsp;<br>
 Example&nbsp;usage:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;send&nbsp;a&nbsp;notification:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create&nbsp;an&nbsp;api&nbsp;instance&nbsp;(api)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;import&nbsp;prowlpy<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;n&nbsp;=&nbsp;prowlpy.<a href="#Notification">Notification</a>('TestApp',&nbsp;'Server&nbsp;Down',&nbsp;"The&nbsp;Web&nbsp;Box&nbsp;isn't&nbsp;responding&nbsp;to&nbsp;a&nbsp;ping")<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;api.post(n)<br>&nbsp;</tt></td></tr>
@@ -173,7 +175,7 @@ Data descriptors defined here:<br>
 <tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
 <td width="100%"><strong>API_DOMAIN</strong> = 'https://prowl.weks.net/publicapi'<br>
 <strong>__author__</strong> = 'jacobburch@gmail.com, mulderje@muohio.edu'<br>
-<strong>__version__</strong> = 0.52000000000000002</td></tr></table><p>
+<strong>__version__</strong> = '0.5.2'</td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#7799ee">
 <td colspan=3 valign=bottom>&nbsp;<br>

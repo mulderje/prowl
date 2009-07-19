@@ -26,7 +26,7 @@ Prowlpy v0.5.2
 Written by Jacob Burch, 7/6/2009
 		   Jonathan Mulder, 7/18/2009
 
-Python module for posting to the iPhone Push Notification service Prowl: http://prowl.weks.net/
+Python module for posting to the iPhone Push Notification service Prowl Api: http://prowl.weks.net/
 '''
 __author__ = 'jacobburch@gmail.com, mulderje@muohio.edu'
 __version__ = '0.5.2'
@@ -179,6 +179,8 @@ class Notification(object):
 	
 	Example usage:
 		To send a notification:
+		
+			Create an api instance (api)
 			>>> import prowlpy
 			>>> n = prowlpy.Notification('TestApp', 'Server Down', "The Web Box isn't responding to a ping")
 			>>> api.post(n)	

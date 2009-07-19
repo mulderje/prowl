@@ -35,9 +35,7 @@ Basic working module
 
 ------
 Todo:
-    Add priority
+	Create unit tests
 	More detailed Exceptions based on the returned XML document
-	add more documentation
-	add more support for the provider key
-	cleanup the code
-	create a spec file for easy install
+	Add more support for the provider key
+	Create a spec file for easy install
