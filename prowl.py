@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Copyright (c) 2009 Jonathan Mulder <mulderje@muohio.edu>
 # 					 Jacob Burch <jacobburch@gmail.com>
@@ -21,29 +22,30 @@
 # THE SOFTWARE.
 
 '''
-Prowlpy v0.5.3
+Prowl.py v0.6
 
-Written by Jacob Burch, 7/6/2009
-		   Jonathan Mulder, 7/18/2009
+Written by Jonathan Mulder, 7/18/2009
+Original code Jacob Burch, 7/6/2009 (only http code remaining from prowlpy project)
 
 Python module for posting to the iPhone Push Notification service Prowl Api: http://prowl.weks.net/
 '''
-__author__ = 'jacobburch@gmail.com, mulderje@muohio.edu'
-__version__ = '0.5.3'
+__author__ = 'mulderje@muohio.edu'
+__version__ = '0.6'
 
+from optparse import OptionParser
 import httplib2
 import urllib
 
 API_DOMAIN = 'https://prowl.weks.net/publicapi'
 
 class Api(object):
-	'''A python interface to the prowler Api
+	'''A python interface to the prowl Api
 	
 	Example usage:
-		To create an instance of the prowlpy.Api class:
+		To create an instance of the prowl.Api class:
 		
-			>>> import prowlpy
-			>>> api = prowlpy.Api('1234567890123456789012345678901234567890')
+			>>> import prowl
+			>>> api = prowl.Api('1234567890123456789012345678901234567890')
 		
 		To verity the validity of an api key:
 			
@@ -52,7 +54,7 @@ class Api(object):
 		To post a notification:
 		
 			Create a Notification instance (n)
-			>>> api.post(n)
+			>>> api.add(n)
 			
 		Both the verify and the post methods will return success or failure values.
 	'''
@@ -68,9 +70,6 @@ class Api(object):
 		self.apikey = apikey
 		self.providerkey = providerkey
 		
-		# Aliasing
-		self.add = self.post
-
 	def get_apikey(self):
 		'''Get the api key for the prowler instance.
 		
@@ -126,23 +125,23 @@ class Api(object):
 			If anything fails
 		'''
 		h = httplib2.Http()
-		headers = {'User-Agent': "Prowlpy/%s" % str(__version__)}
+		headers = {'User-Agent': "Prowl/%s" % str(__version__)}
 		verify_resp,verify_content = h.request("%s/verify?apikey=%s" % \
-												(API_DOMAIN,self.apikey))
+												(API_DOMAIN, self.apikey))
 		if verify_resp['status'] != '200':
 			raise Exception("Invalid API Key %s" % verify_content)
 		else:
 			return True
 			
-	def post(self,
+	def add(self,
 			 notification):
-		'''Post a notification using the given api key.
+		'''Add a notification using the given api key.
 		
 		TODO:
 			Create more robust error checking
 		
 		Args:
-			notification: A notification object
+			notification: A Notification instance
 			
 		Returns:
 			True: Returns true if the response is 200
@@ -154,7 +153,7 @@ class Api(object):
 		h = httplib2.Http()
 
         # Set User-Agent
-		headers = {'User-Agent': "Prowlpy/%s" % str(__version__)}
+		headers = {'User-Agent': "Prowl/%s" % str(__version__)}
 
         # Perform the request and get the response headers and content
 		data = {
@@ -170,9 +169,9 @@ class Api(object):
 		if resp['status'] == '200':
 			return True
 		elif resp['status'] == '401':
-			raise Exception("Auth Failed: %s" % content)
+			raise Exception("Auth Failed: Invalid API key")
 		else:
-			raise Exception('Failed')
+			raise Exception("Failed: %s" % content)
 
 class Notification(object):
 	'''A python interface for a growl Notification to be sent through the prowler Api
@@ -181,9 +180,9 @@ class Notification(object):
 		To send a Notification:
 		
 			Create an Api instance (api)
-			>>> import prowlpy
-			>>> n = prowlpy.Notification('TestApp', 'Server Down', "The Web Box isn't responding to a ping")
-			>>> api.post(n)	
+			>>> import prowl
+			>>> n = prowl.Notification('TestApp', 'Server Down', "The Web Box isn't responding to a ping")
+			>>> api.add(n)	
 	'''
 	def __init__(self,
 				 application=None,
@@ -202,7 +201,7 @@ class Notification(object):
 		self.event = event
 		self.description = description
 		self.priority = priority
-		
+			
 	def get_application(self):
 		'''Get the application for the notification
 		
@@ -280,10 +279,61 @@ class Notification(object):
 		Args:
 			priority: The priority for the notification
 		'''
-		if not (priority >= -2 or priority <= 2):
+		if not (priority >= -2 and priority <= 2):
 			raise ValueError('priority must be in the range [-2, 2]')
 		self._priority = priority
 
 	priority = property(get_priority, set_priority,
 						doc='The priority for the notification.')
 
+def main():
+	usage = "%prog [options]"
+	version = "%prog " + str(__version__)
+	description = 'Python module for posting to the iPhone Push Notification service using the Prowl Api provided by http://prowl.weks.net/'
+	
+	parser = OptionParser(usage=usage, description=description, version=version)
+	parser.add_option('-k', '--apikey', dest='api',
+						help="set the api key")
+	parser.add_option('-a', '--application', dest='app',
+						help='set the application')
+	parser.add_option('-e', '--event', dest='event',
+						help='set the event')
+	parser.add_option('-n', '--notification', dest='notification',
+						help='set the notification')
+	parser.add_option('-p', '--priority', dest='priority', type='int',
+						help='set the priority [-2,2]', default=0)
+	parser.add_option('--verify', dest='verify', action='store_true',
+						help='verify a given api key')
+						
+	(options, args) = parser.parse_args()
+	
+	if options.api is not None and options.verify is True:
+		try:
+			api = Api(options.api)
+	
+			try:
+				if api.verify() is True:
+					print 'Valid API Key!'
+			except Exception:
+				print 'Invalid API Key!'
+		except ValueError as e:
+			print 'Error settion option:', e
+	
+	elif options.api is not None and options.app is not None \
+		and options.event is not None and options.notification is not None:
+		try:
+			api = Api(options.api)
+			n = Notification(options.app, options.event, options.notification, options.priority)
+	
+			try:
+				if api.add(n) is True:
+					print 'Notification successfully sent!'
+			except Exception as e:
+				print 'Notificaion failed!', e
+		except ValueError as e:
+			print 'Error settion option:', e
+
+	else:
+		parser.print_help()
+		
+if __name__ == "__main__": main()

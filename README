@@ -1,6 +1,7 @@
-Prowlpy
-Written by Jacob Burch, 7/6/2009
-		   Jonathan Mulder, 7/18/2009
+Prowl
+Written by Jonathan Mulder, 7/18/2009
+Original code from Jacob Burch, 7/6/2009 prowlpy project (only http code remains)
+		   
 
 Python module for posting to the iPhone Push Notification service Prowl: http://prowl.weks.net/
 
@@ -11,6 +12,9 @@ The socket module must be compiled with SSL support
 ------
 Change Log
 ------
+v0.6
+Added command line options
+
 v0.5.3
 Fixed indentation errors
 
